@@ -38,6 +38,7 @@ void Semaphore::v() {
 int Semaphore::finc(volatile int & number) {
     // Implementar incremento atômico (ver pdf)
     int value = 1;
+    int numb=number;
     asm("xadd %0, %2" : "=a" (number) : "a" (number), "b" (value));
 }
 

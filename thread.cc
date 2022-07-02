@@ -58,6 +58,10 @@ void Thread::suspend() {
     db<Thread>(TRC) << "Thread iniciou suspensão\n";
     if (this->_state != State::SUSPENDED) {
         this->_state = State::SUSPENDED;
+        
+    if (_running==this) {
+        _ready.remove(&this->_link);
+    }
 
         _suspension.insert(&this->_link);
     }
